@@ -1,6 +1,7 @@
 import { warning, isObject } from './utils'
 import actions, { registerAction, createActionType } from './actions'
 import decompose from './decompose'
+import { takeAll } from './saga'
 
 // create actions and reducerMap from duck.reducers
 const foldReducers = advancedExtract(({
@@ -118,4 +119,5 @@ export {
     actions,
     decompose,
     createActionType,
+    takeAll,
 }
