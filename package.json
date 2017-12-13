@@ -1,6 +1,6 @@
 {
   "name": "redurex",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "enhance your redux app",
   "main": "lib/redurex.js",
   "module": "es/redurex.js",
