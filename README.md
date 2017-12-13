@@ -14,7 +14,8 @@
 # Quick Start
 
 ```javascript
-import duck, { actions, takeAll } from 'redurex';
+import { duck, actions, takeAll } from 'redurex';
+import { put } from 'redux-saga/effects';
 
 export const friendsDuck = duck({
     namespace: 'friends',
@@ -62,11 +63,13 @@ import { decompose } from 'redurex'
 import ducks from './ducks' // 一个数组
 
 export default function configureStore() {
-    const { rootReducer, rootWatcher } = decompose(ducks)
+    const { rootReducer, rootWatcher, injectAsyncDuck } = decompose(ducks)
     const sagaMiddleware = createSagaMiddleware()
 
     const store = createStore(rootReducer, applyMiddleware(sagaMiddleware))
-    sagaMiddleware.run(rootWatcher.watch)
+    sagaMiddleware.run(rootWatcher)
+    // 支持懒加载 duck
+    store.injectAsyncDuck = injectAsyncDuck(store)
     return store
 }
 ```
