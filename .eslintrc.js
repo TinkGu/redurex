@@ -1,6 +1,6 @@
 module.exports = {
     root: true,
-    extends: ['airbnb-base', 'loose-airbnb-react'],
+    extends: ['airbnb-base', 'loose-airbnb'],
     env: {
         browser: true,
         node: true,
