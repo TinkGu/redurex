@@ -2,8 +2,8 @@
   "name": "redurex",
   "version": "0.2.0",
   "description": "enhance your redux app",
-  "main": "lib/index.js",
-  "module": "es/redux.js",
+  "main": "lib/redurex.js",
+  "module": "es/redurex.js",
   "scripts": {
     "clean": "rimraf lib dist es",
     "lint": "eslint src",
