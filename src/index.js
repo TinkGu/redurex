@@ -1,4 +1,4 @@
-import { warning, isObject } from './utils'
+import { warning, isObject, ownProperty } from './utils'
 import actions, { registerAction, createActionType } from './actions'
 import decompose from './decompose'
 import { takeAll } from './saga'
@@ -78,7 +78,7 @@ function createSagaMeta(maybeSaga) {
 
 function createReduxReducer(funcMap, initialState) {
     if (!isObject(funcMap)) return null
-    return (state = initialState, action) => funcMap.hasOwnProperty(action.type)
+    return (state = initialState, action) => ownProperty(funcMap, action.type)
         ? funcMap[action.type](state, action && action.payload, action)
         : state
 }
@@ -93,13 +93,14 @@ export default function duck({
         console.warn('redurex: namespace should be a string, and should not be empty!')
     }
 
+    // eslint-disable-next-line prefer-rest-params
     const duckMeta = arguments[0]
 
-    if (duckMeta.hasOwnProperty('reducer')) {
+    if (ownProperty(duckMeta, 'reducer')) {
         warning('[reducer] is useless, please use [reducers] instead.')
     }
 
-    if (duckMeta.hasOwnProperty('saga')) {
+    if (ownProperty(duckMeta, 'saga')) {
         warning('[saga] is useless, please use [sagas] instead.')
     }
 

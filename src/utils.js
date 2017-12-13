@@ -5,3 +5,7 @@ export function warning(namespace, tip) {
 export function isObject(o) {
     return o ? (typeof o === 'object' || typeof o === 'function') : false
 }
+
+export function ownProperty(target, prop) {
+    return Object.prototype.hasOwnProperty.call(target, prop)
+}
