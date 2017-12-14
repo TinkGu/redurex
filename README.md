@@ -51,7 +51,7 @@ dispatch(actions().friends.requestFriends({ id: 1 }));
 # Install
 
 ```bash
-# 必须已经安装 redux, redux-saga
+# 必须已经安装 redux, redux-saga, babel-runtime
 npm i redurex --save
 ```
 
