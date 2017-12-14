@@ -15,6 +15,7 @@
     ]
   ],
   "plugins": [
+    "transform-runtime",
     "transform-object-rest-spread"
   ],
   "env": {
@@ -26,7 +27,12 @@
             "loose": true
           }
         ]
-      ]
+      ],
+      "plugins": [
+        "transform-runtime",
+        "external-helper",
+        "transform-object-rest-spread"
+      ],
     }
   }
 }
