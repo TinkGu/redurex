@@ -44,7 +44,7 @@ export function createRootWatcher() {
         }
     }
 
-    function injectWatchers(watchers) {
+    function injectAsyncWatchers(watchers = []) {
         watchers.forEach(({ takeAll: _takeAll, type, saga }) => {
             watcherMap[type] = {
                 task: null,
@@ -56,7 +56,7 @@ export function createRootWatcher() {
 
     return {
         watch,
-        injectWatchers,
+        injectAsyncWatchers,
     }
 }
 

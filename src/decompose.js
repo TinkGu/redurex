@@ -2,17 +2,19 @@ import { combineReducers } from 'redux'
 import { createRootWatcher } from './saga'
 
 export default function decompose(rootDuck) {
-    const { injectWatchers: injectAsyncWatchers, watch } = createRootWatcher()
+    const { injectAsyncWatchers, watch } = createRootWatcher()
     const rootReducerMap = {}
 
     rootDuck.forEach(({ watchers, reducer, namespace }) => {
         rootReducerMap[namespace] = reducer
-        injectWatchers(watchers)
+        injectAsyncWatchers(watchers)
     })
 
     const createReducer = highOrderCreateReducer(rootReducerMap)
-    const injectAsyncReducer = (store, name, asyncReducerMap) => {
-        store.replaceReducer(createReducer(asyncReducerMap))
+    const injectAsyncReducer = (store, name, asyncReducer) => {
+        store.replaceReducer(createReducer({
+            [name]: asyncReducer
+        }))
     }
 
     const injectAsyncDuck = store => duck => {
